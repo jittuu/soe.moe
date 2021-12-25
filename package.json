@@ -1,0 +1,26 @@
+{
+  "name": "@jittuu/www.soe.moe",
+  "version": "1.0.0",
+  "description": "website for www.bigbee.dev",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss styles.css -o build/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jittuu/soe.moe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jittuu/soe.moe/issues"
+  },
+  "homepage": "https://github.com/jittuu/soe.moe#readme",
+  "dependencies": {
+    "autoprefixer": "^10.3.3",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.8"
+  }
+}

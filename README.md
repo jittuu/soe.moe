@@ -1,1 +1,1 @@
-# soe.moe
+# website for https://soe.moe
