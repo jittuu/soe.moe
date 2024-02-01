@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
+import { SiteFooter } from "@/components/site-footer";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -46,6 +47,7 @@ export default function RootLayout({
               </div>
             </header>
             <main className="flex-1">{children}</main>
+            <SiteFooter />
           </div>
           <TailwindIndicator />
         </ThemeProvider>
