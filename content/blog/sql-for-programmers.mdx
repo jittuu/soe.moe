@@ -1,0 +1,39 @@
+---
+title: SQL for Programmers
+description: CRUD လို့ပြောလိုက်ရင် အထင်သေးကြတယ်၊ အရမ်းလွယ်တယ်လို့ ထင်ကြတယ်။ တကယ့်အလုပ်ခွင်မှာ CRUD ပဲ အများဆုံးလုပ်ရတာဆိုပေမယ့် သိပ်လွယ်တယ်တော့ မဟုတ်ဘူး။ Project လုပ်ရင်း လေ့လာချင်တယ်ဆိုရင် ဒီ Feature List တွေပါအောင် လုပ်ပြီး ရအောင်​ရေးကြည့်ပါ။ ဒါမှ Real-world project နဲ့ နီးစပ်မှာ။
+date: "2024-01-26"
+---
+
+SQL ဆိုတာ programmer တွေအတွက် မသိရင်မဖြစ်တဲ့ Skill တစ်ခုပါ။ အစပိုင်းမှာ လွယ်ပေမယ့် တစ်ချို့ဟာတွေတော့ အချိန်ပေးပြီး လေ့လာရပါတယ်။ Programmer တစ်ယောက်အနေနဲ့ အဆင့်လိုက် ဘာတွေသိထားရမလဲဆိုတော့ —
+
+1. `SELECT, WHERE, ORDER`
+
+ဒါကတော့ စစချင်းမှာ Table ဆိုတဲ့ concept သိဖို့နဲ့ Select လုပ်တတ်၊ filter လုပ်တတ်၊ order လုပ်တတ်ရင် ရပြီ။
+
+2. Grouping and Aggregation
+
+`GROUP BY` လိုမျိုး grouping concept တွေ သိရတော့မယ်၊ Group လုပ်ပြီးရင် Group လုပ်ထားတဲ့ ဒေတာကို ပြန်တွက်ထုတ်ရတဲ့ `MIN, MAX, COUNT, SUM` စတဲ့ Aggregation တွေကို သိရမယ်။
+
+3. Normalization and Data Integrity
+
+ပြီးရင်တော့ Table တွေ ဘာကြောင့်ခွဲပြီးလုပ်တယ်။ **1NF, 2NF, 3NF** စတာတွေ သိရတော့မယ်။ ပြီးရင် Data Integrity အတွက် Primary Key, Foreign Key စတာတွေ သိရမယ်။ ဒီဟာတွေက Theory တွေဆိုပေမယ့် လက်တွေ့မှာလည်း တစ်ကယ် အသုံးဝင်တော့ သေချာနားလည်ထားဖို့လိုတယ်။
+
+4. JOINs (`INNER JOIN, LEFT JOIN`, Views)
+
+Table တွေ ခွဲပြီးရင် လိုအပ်တဲ့ data ရဖို့ JOIN တွေ လုပ်ပြီး ပြန်ထုတ်တတ်ရမယ်။ အသုံးများတဲ့ `INNER JOIN` နဲ့ `LEFT JOIN` လောက်ကတော့ သေချာသိနေရမယ်။ ပြီးရင် View ဆိုတဲ့ concept လောက်တော့ သိရတော့မယ်။
+
+5. Functions and operators
+
+ထည့်ထားတဲ့ data တွေကို ပြင်ဆင်ပေါင်းစပ်ပြီး လုပ်ရတာတွေရှိလာတတ်တယ်။ ဥပမာ - date တို့၊ string တို့ကို manipulate လုပ်တဲ့ functions/operators တွေကို သိရမယ်။
+
+6. Indexing
+
+Data လေးနည်းနည်းရှိလာပြီဆို indexing က မရှိမဖြစ်ပဲ။ သူ့အကြောင်းလည်း သေချာသိဖို့လိုတယ်။
+
+7. Window Functions
+
+ပုံမှန်အားဖြင့် `JOIN` တွေလောက်နဲ့အဆင်ပြေတယ်ဆိုပေမယ့် တစ်ခါတစ်လေမှာ Window Functions တွေသုံးလိုက်တာက အများကြီးလွယ်သွားတယ်။ ဘယ်လိုရေးရေးမရဘူး၊ loop တွေပတ်ဖို့စဉ်းစားနေပြီဆိုရင် Window Functions ကိုသုံးဖို့ လိုနေတာလည်း ဖြစ်တတ်တယ်။
+
+8. Query Optimization
+
+ဒါကတော့ Data များများနဲ့လုပ်တဲ့သူတွေ၊ Reporting ပိုင်းတွေမှာ လုပ်ရတာပေါ့။ Query Plan ကို analyst လုပ်တာကနေစပြီး indexing အလုပ်လုပ်ပုံတွေ၊ Database Engine ရဲ့ fine tuning တွေကိုပါသိိဖို့လိုလာပြီ။
