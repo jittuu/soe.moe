@@ -1,0 +1,44 @@
+---
+title: Don’t underrate CRUD
+description: CRUD လို့ပြောလိုက်ရင် အထင်သေးကြတယ်၊ အရမ်းလွယ်တယ်လို့ ထင်ကြတယ်။ တကယ့်အလုပ်ခွင်မှာ CRUD ပဲ အများဆုံးလုပ်ရတာဆိုပေမယ့် သိပ်လွယ်တယ်တော့ မဟုတ်ဘူး။ Project လုပ်ရင်း လေ့လာချင်တယ်ဆိုရင် ဒီ Feature List တွေပါအောင် လုပ်ပြီး ရအောင်​ရေးကြည့်ပါ။ ဒါမှ Real-world project နဲ့ နီးစပ်မှာ။
+date: "2024-01-01"
+---
+
+CRUD လို့ပြောလိုက်ရင် အထင်သေးကြတယ်၊ အရမ်းလွယ်တယ်လို့ ထင်ကြတယ်။ တကယ့်အလုပ်ခွင်မှာ CRUD ပဲ အများဆုံးလုပ်ရတာဆိုပေမယ့် သိပ်လွယ်တယ်တော့ မဟုတ်ဘူး။ Project လုပ်ရင်း လေ့လာချင်တယ်ဆိုရင် ဒီ Feature List တွေပါအောင် လုပ်ပြီး ရအောင်​ရေးကြည့်ပါ။ ဒါမှ Real-world project နဲ့ နီးစပ်မှာ။
+
+## R - Read (Listing)
+
+1. Data - အရင်ဆုံး Database table မှာ rows ၁ သိန်းလောက် အရင်ထည့်ပါ။ Real-world project တွေမှာက millions of row တွေနဲ့ အလုပ်လုပ်ရတာ များပါတယ်။ ဒီတော့ ၁ သိန်းလောက်နဲ့ စမ်းလုပ်ကြည့်ပါ။
+2. Pagination
+3. Single Field Search
+4. Multi Fields Search
+5. Dynamic Sorting (Table Column Header ကို နှိပ်ပြီး Sort လုပ်တာ။ ဒီမှာ SQL injection ဖြစ်တတ်တာကို သတိထားပါ)
+
+## R - Read (Detail)
+
+ဒါကတော့ လွယ်လေ့ရှိတယ်။
+
+## C & U - Create and Update
+
+ဒီမှာတော့ Form ပဲ။ Form လို့ပြောလိုက်ရင် လွယ်တာလေးတွေရှိပေမယ့် Project တစ်ခုမှာ တော်တော် ရှုပ်တဲ့ Form ၂ ခု၊ ၃ ခု လောက် ပါတတ်တယ်။ ဘယ်လို Feature တွေပါတဲ့ Form လိုမျိုး ရေးကြည့်သင့်လဲဆိုတော့...
+
+1. Remote validation in client (ဥပမာ - email ထည့်ခိုင်းပြီး system တစ်ခုလုံးမှာ email ရှိထားပြီးသား ဟုတ်/မဟုတ် စစ်တာ)
+2. Autocomplete combobox with search
+3. Cascading Dropdown (ပြည်နယ်/တိုင်းရွေးပြီး မြို့နယ် ရွေးတာမျိုး)
+4. Cascading Dropdown ကို Data ကို ဆာဗာကနေ ဆွဲတာ
+5. Dynamic rows (flight reservation လုပ်တဲ့အခါ ခရီးသည်တွေကို ကြိုက်သလောက်ထည့်လို့ရတာမျိုး)
+6. Wizard Form (တစ်ဆင့်ပြီး တစ်ဆင့် သွားလို့ရတဲ့ Form)
+
+<Callout>
+  ဘာလိုဟာလုပ်ရမလဲ စဉ်းစားမရရင် Flight Reservation ကို စမ်းကြည့်ပါ။
+  အကြမ်းဖျင်းအနေနဲ့ One way or Return အပေါ်မူတည်ပြီး Date one/two ရွေးရမယ်။ ကလေး
+  ဘယ်နှစ်ယောက်၊ လူကြီး ဘယ်နှစ်ယောက်။ ပြီးရင် သူတို့ရဲ့ info တွေ။ လူကြီးမပါဘဲ
+  ကလေးပဲဆို မရဘူးဆိုတဲ့ validation လိုမျိုးတွေ။ ပြီးရင် economy/business class
+  အပေါ်မူတည်ပြီး ဈေးတွက်တာတွေ။
+</Callout>
+
+## D - Delete
+
+ဒါကတော့ back-end ဖက်က ပိုရှုပ်လေ့ ရှိတယ်။
+
+Good luck with CRUD.
