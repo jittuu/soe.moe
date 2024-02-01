@@ -1,5 +1,6 @@
-import { ChevronLeft } from "lucide-react";
+import { Calendar, ChevronLeft } from "lucide-react";
 
 export const Icons = {
+  calendar: Calendar,
   chevronLeft: ChevronLeft,
 };
