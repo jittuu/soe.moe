@@ -1,0 +1,88 @@
+---
+title: Statement vs Expression
+description: React developer တွေ JSX ရေးတဲ့အခါ JavaScript expression တွေပဲ ထည့်ရေးလို့ရတယ်၊ statement မရဘူး လို့သိကြတယ်။ ဒါပေမယ့် expression ဆိုတာ ဘာလဲဆိုရင် ဃဂနဏ မသိကြဘူး။ သိသလိုလိုတော့ ရှိတယ်၊ သေချာမသိဘူးပေါ့။
+date: "2024-01-07"
+---
+
+React developer တွေ JSX ရေးတဲ့အခါ JavaScript expression တွေပဲ ထည့်ရေးလို့ရတယ်၊ statement မရဘူး လို့သိကြတယ်။ ဒါပေမယ့် expression ဆိုတာ ဘာလဲဆိုရင် ဃဂနဏ မသိကြဘူး။ သိသလိုလိုတော့ ရှိတယ်၊ သေချာမသိဘူးပေါ့။
+
+Expressions ဆိုတာ လွယ်လွယ်ပြောရရင် value ထုတ်ပေးတာပါ။ e.g -
+
+```typescript
+2 // produces 2
+2 * 3 // produces 6
+Status === ‘loading’ // produces true or false
+“Hello” + “world” // produces “Hello world”
+[1,2,3].map(x => x * 2) // produce [2,4,6]
+```
+
+Statement ဆိုတာကျတော့ Expression နဲ့ တခြားလိုတာပေါင်းပြီး instructions တွေပေးတာ။ variable ထဲ သိမ်းမယ်။ Function ခေါ်မယ်။ Control flow တွေရေးမယ်။ ကိုယ်တွေက အဲ့ဒီ statement တွေ ပေါင်းပြီး program ရေးနေကြတာ။ e.g -
+
+```typescript
+const i = 5; // this is statement
+
+if (i > 1) {
+  // this is also statement
+  // more statement here
+  console.log("hello"); // this is also statement
+}
+```
+
+ဒီမှာ စိတ်ဝင်စားဖို့ကောင်းတာ တစ်ခုက statement တွေမှာ expression အတွက် slot လေးတွေရှိတတ်တယ်။ e.g.
+
+```typescript
+const i = {expression here};
+
+// all are valid;
+
+cosnt i = 5;
+const i = "hello";
+const i = num > 3;
+const i = isOdd ? 'odd' : 'even';
+const i = arr.map(j => j * 2);
+```
+
+Expression တွေကို ဘယ်လိုသုံးရလဲဆိုတာ အလွယ်မှတ်ချင်ရင် Function parameter အနေနဲ့ pass လို့ရတာမှန်သမျှ သုံးလို့ရတယ်။
+
+```typescript
+console.log({expression here})
+```
+
+## React မှာဆိုရင်
+
+ဒီ code က valid မဖြစ်သလိုပဲ
+
+```typescript
+console.log(if (i > 0) { 1 } else { 2 }) // Error
+```
+
+ဒါလည်း JSX မှာ မရဘူး။
+
+```jsx
+// Syntax error
+<div>
+{
+  if (i > 0) {
+    `${1}`
+  } else {
+     `${2}`
+  }
+}
+</div>
+```
+
+ဒါပေမယ့် ဒီ code တွေက နှစ်ခုလုံးမှာ ရတယ်။
+
+```typescript
+console.log(i > 0 ? 1 : 0); // valid
+```
+
+```jsx
+// same in JSX
+<div>{i > 0 ? `${1}` : `${0}`}</div>
+```
+
+<Tip>
+  အဲ့ဒီတော့ JSX မှာ JavaScript ကိုညှပ်ရေးတဲ့အခါ Function Parameter pass
+  လုပ်သမျိုးစဉ်းစားလိုက်ရင် ရှင်းသွားပြီ။
+</Tip>

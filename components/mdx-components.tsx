@@ -5,6 +5,7 @@ import * as React from "react";
 
 import { Callout } from "@/components/callout";
 import { MdxCard } from "@/components/mdx-card";
+import { Tip } from "@/components/tip";
 import { cn } from "@/lib/utils";
 
 const components: MDXComponents = {
@@ -152,6 +153,7 @@ const components: MDXComponents = {
     <Image {...props} alt={props.alt} />
   ),
   Callout,
+  Tip,
   Card: MdxCard,
 };
 
