@@ -41,11 +41,6 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col">
-            <header className="container z-40 bg-background">
-              <div className="flex h-20 items-center justify-between py-6">
-                <nav></nav>
-              </div>
-            </header>
             <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>
