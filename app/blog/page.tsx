@@ -6,7 +6,7 @@ import { Icons } from "@/components/icons";
 import { formatDate } from "@/lib/utils";
 
 export const metadata = {
-  title: "Blog",
+  title: "Soe Moe's Blog",
 };
 
 export default async function HomePage() {
