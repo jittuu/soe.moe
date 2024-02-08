@@ -1,0 +1,55 @@
+---
+title: Optimistic Concurrency Control
+description: Data တစ်ခုထဲကို user ၂ ယောက်က အတူတူ Edit လုပ်ရင် ဘယ်လိုလုပ်မလဲ?
+date: "2024-02-08"
+---
+
+Optimistic Concurrency Control (OCC) အကြောင်းပြောရင် ဖြစ်တဲ့ problem ကို အရင်သိမှ ရမယ်ဆိုတော့ problem scenario ကို အရင်ပြောပါမယ်။
+
+<Image
+  class="my-4 rounded-sm"
+  src="/images/blog/optimistic-concurrency-control-1.png"
+  width={1440}
+  height={728}
+/>
+
+- System မှာ contacts ဆိုတဲ့ table ရှိတယ် ဆိုပါစို့။ columns တွေက `id, name, phone_no` ပဲထားပါတော့။ sample data `{id: 1, name: "Ko Ko", phone_no: "091234"}`
+- သုံးတဲ့ user ၂ ယောက်က contact တစ်ခုတည်းကို တူတူ edit လုပ်ကြတယ်။ Save ကို မနှိပ်ခင်မှာတော့ ၂ ယောက်လုံးမှာ ရတာ တူတူပဲ။
+- user A က နာမည်ကို `Mg Mg` လို့ပြောင်းလိုက်တယ်၊ ပြီးရင် Save လုပ်လိုက်တယ်။ အဲ့ဒီတော့ Database မှာ `{id: 1, name: "Mg Mg", phone_no: "091234"}` လို့ဖြစ်သွားပြီ။ ဒါက ပြဿနာမရှိဘူး။
+- user B က phone_no ကို `"0912345"` လို့ပြောင်းပြီး Save လုပ်လိုက်တယ်။ ဒီမှာက သူ့ဆီမှာ ရှိနေတာက `{id: 1, name: "Ko Ko", phone_no: "091234"}` ဆိုတဲ့ user A မပြင်ခင်က ဖတ်ထားတဲ့ဟာ။ ပြောင်းတာက phone_no ပဲ ပြောင်းတာဆိုပေမယ့် Form Edit တွေက name ကိုပါ ထပ် Save တာဆိုတော့ `{id: 1, name: "Ko Ko", phone_no: "0912345"}` ဆိုပြီး Database မှာ ဖြစ်သွားတယ်။ user A ပြင်လိုက်တဲ့ `name: "Mg Mg"` ကိုပါ overwrite လုပ်လိုက်တာ။
+- ဒီမှာ ပြဿနာက user B က data conflict ဖြစ်သွားတာကို မသိဘဲ overwrite လုပ်လိုက်တော့ ဒေတာအမှားကြီး Save လုပ်သွားတာ။
+
+ဒီလို problem ကို solve လုပ်ဖို့အတွက် Optimistic Concurrency Control ဆိုပြီး လုပ်ကြတာ။ များသောအားဖြင့်က table မှာ updated_time or version ဆိုပြီး timestamp ကို သိမ်းကြတယ်။ ပြီးရင် Update လုပ်တဲ့အချိန်မှာ ရထားတဲ့ timestamp နဲ့ တိုက်စစ်ကြတယ်။ မတူရင် update ပေးမလုပ်ဘူးပေါ့။
+
+```sql
+-- Sample UPDATE SQL
+UPDATE contacts
+SET name=?, phone_no=?, version=now()
+WHERE id=? AND version=?
+```
+
+<Callout>
+  ဒီမှာ version ကို WHERE condition မှာ ထည့်လိုက်တာရယ်၊ current time နဲ့ update
+  လုပ်လိုက်တာကို သတိထားပါ။
+</Callout>
+
+အပေါ်က scenario ကို update_time/version ထည့်ပြီး ပြန်လုပ်မယ်ဆိုရင်... (မြင်လွယ်အောင် version 1,2,3 နဲ့ပြောပါမယ်။ များသောအားဖြင့်ကတော့ timestamp သုံးကြတယ်)
+
+<Image
+  class="my-4 rounded-sm"
+  src="/images/blog/optimistic-concurrency-control-2.png"
+  width={1440}
+  height={733}
+/>
+
+- Database မှာက `{id: 1, name: "Ko Ko", phone_no: "091234", version: 1}`
+- User ၂ ယောက်လုံးရတာက `version: 1`
+- user A update လုပ်တော့ သူ့မှာရှိတာလည်း `version 1`, database မှာလည်း `version: 1` ဆိုတော့ Save က အိုကေတယ်။ အဲ့ဒီမှာ update လုပ်ရင်းနဲ့ version ကို တိုးလိုက်တော့ Database မှာ `{id: 1, name: "Ko Ko", phone_no: "091234", version: 2}` ဖြစ်သွားပြီ။
+- user B က update လုပ်တော့ သူ့မှာ ရှိတာက `version 1`, database မှာလည်း `verison: 2` ဆိုတော့ Save လို့ မရတော့ဘူး။ WHERE condition မတူတော့ updated row count က 0 ဖြစ်သွားပြီ။ updated row count 0 ဆိုရင် return error ပြန်ပေါ့။
+
+<Tip>
+  ORM တစ်ခုခု သုံးထားခဲ့ရင် Optimistic Concurrency Control ဆိုပြီး ရှာပြီးပါ။
+  built-in Support လုပ်တာတွေ များပါတယ်။
+</Tip>
+
+တစ်ခုခု ရသွားမယ်လို့ မျှော်လင့်ပါတယ်။ Happy Coding!
