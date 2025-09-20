@@ -10,18 +10,19 @@ const publishedPosts = posts
 ---
 
 <Layout title="Soe Moe's Blog" description="Code, stories, and thoughts.">
-  <div class="container max-w-4xl py-6 lg:py-10">
-    <div class="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-      <div class="flex-1 space-y-4">
-        <h1 class="inline-block font-heading text-4xl lg:text-5xl">
-          Soe Moe's Blog
-        </h1>
-        <p class="text-xl text-muted-foreground">
-          Code, stories, and thoughts.
-        </p>
-      </div>
-    </div>
-    <hr class="my-8" />
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <header class="mb-12">
+      <h1 class="font-heading text-4xl lg:text-5xl uppercase tracking-wide text-foreground">
+        <a href="/" class="hover:opacity-80 transition-opacity">
+          Soe Moe Tun Lwin
+        </a>
+      </h1>
+      <p class="text-sm text-muted-foreground mt-2">
+        Entrepreneur, Software Architect
+      </p>
+    </header>
+
+    <hr class="border-border my-8" />
     {publishedPosts?.length ? (
       <div class="grid gap-10">
         {publishedPosts.map((post) => (

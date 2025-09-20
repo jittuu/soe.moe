@@ -1,3 +1,77 @@
 ---
-return Astro.redirect('/blog');
+import Layout from '@/layouts/Layout.astro'
 ---
+
+<Layout
+  title="Soe Moe Tun Lwin - Entrepreneur, Software Architect, Consultant, Product Strategist"
+  description="Personal website of Soe Moe Tun Lwin - Entrepreneur, Software Architect, Consultant, and Product Strategist"
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <header class="mb-12">
+      <h1 class="font-heading text-4xl lg:text-5xl uppercase tracking-wide text-foreground">
+        Soe Moe Tun Lwin
+      </h1>
+      <p class="text-sm text-muted-foreground mt-2">
+        Entrepreneur, Software Architect
+      </p>
+    </header>
+
+    <hr class="border-border my-8" />
+
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+      <div class="prose prose-slate dark:prose-invert max-w-none">
+        <h2>Experience</h2>
+        <p>
+          I've worked on all levels of the software stack, from defining the
+          strategy to shaping projects to designing interfaces to writing code
+          to marketing.
+        </p>
+        <p>
+          I was working in Singapore, from 2006 to 2015, for companies from
+          MNC companies like UTAC, HP to startups like Xuenn, Maloft. Always
+          looking to understand the bigger picture, my role evolved from
+          <strong>Programmer</strong> to
+          <strong>Architect</strong> to
+          <strong>CTO</strong>.
+        </p>
+        <p>
+          After I was back in Myanmar in 2015, I founded my first business,
+          <a href="https://www.kanoak.com">Kanoak</a>, with my wife. Kanoak is
+          now a well-known online shop in Myanmar. We managed to release our
+          own Kanoak app in 2021. During these years, I learned a lot about
+          running a business, managing cash flow, sales, and marketing -
+          especially Facebook marketing.
+        </p>
+        <p>
+          In 2017, I founded my second business, Piti, with my two friends. We
+          released our app, <a href="https://www.piti.app">Piti</a> - a
+          loyalty program platform for businesses. I left Piti in 2020 with
+          plenty of experience building and selling a SaaS product.
+        </p>
+      </div>
+
+      <div class="md:border-l md:border-border md:pl-8">
+        <div class="prose prose-slate dark:prose-invert max-w-none">
+          <h2>Current work</h2>
+          <p>
+            I'm currently working with a small team to invent the
+            next-generation tools for online shops that are selling products
+            via Facebook.
+          </p>
+          <p>
+            Feel welcome to reach out even if you don't have a particular
+            question in mind.
+          </p>
+          <p>
+            My email address is
+            <a href="mailto:hi@soe.moe">hi@soe.moe</a>.
+          </p>
+          <p>
+            I also write about technology, entrepreneurship, and product development on my
+            <a href="/blog">blog</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
