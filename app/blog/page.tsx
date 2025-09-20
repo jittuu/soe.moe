@@ -34,10 +34,10 @@ export default async function HomePage() {
           {posts.map((post, index) => (
             <article
               key={post._id}
-              className="group relative flex flex-col space-y-2"
+              className="leading-8 group relative flex flex-col space-y-2"
             >
               <h2 className="text-2xl font-extrabold">{post.title}</h2>
-              {post.description && <p className="">{post.description}</p>}
+              {post.description && <p>{post.description}</p>}
               {post.date && (
                 <div className="flex flex-row gap-1 items-center">
                   <Icons.calendar className="text-muted-foreground" size={12} />
