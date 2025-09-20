@@ -1,7 +1,7 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { formatDate } from "@/lib/utils";
+import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
 const publishedPosts = posts
@@ -18,7 +18,7 @@ const publishedPosts = posts
         </a>
       </h1>
       <p class="text-sm text-muted-foreground mt-2">
-        Entrepreneur, Software Architect
+        Programmer and family man.
       </p>
     </header>
 
