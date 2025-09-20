@@ -30,3 +30,14 @@
 [data-rehype-pretty-code-title] + pre {
   @apply mt-0;
 }
+
+/* Inline code styling */
+:not(pre) > code {
+  @apply bg-muted px-[0.3rem] py-[0.2rem] rounded-sm font-mono text-sm;
+}
+
+/* Remove quotes from inline code */
+:not(pre) > code::before,
+:not(pre) > code::after {
+  content: none !important;
+}

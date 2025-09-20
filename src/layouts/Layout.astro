@@ -1,0 +1,126 @@
+---
+import { SiteFooter } from "@/components/site-footer";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { cn } from "@/lib/utils";
+import "@/styles/globals.css";
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Soe Moe's Blog" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" suppressHydrationWarning>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --font-sans: 'Inter', sans-serif;
+        --font-heading: 'CalSans', var(--font-sans);
+      }
+
+      @font-face {
+        font-family: 'CalSans';
+        src: url('/src/assets/fonts/CalSans-SemiBold.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+  </head>
+  <body class={cn("min-h-screen bg-background font-sans antialiased")}>
+    <div class="flex min-h-screen flex-col">
+      <main class="flex-1">
+        <slot />
+      </main>
+      <SiteFooter />
+    </div>
+    <TailwindIndicator />
+    <script>
+      // Theme switching functionality
+      function getTheme() {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+
+      function setTheme(theme) {
+        if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        localStorage.setItem('theme', theme);
+      }
+
+      window.toggleTheme = function() {
+        const currentTheme = getTheme();
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        updateThemeIcons();
+      }
+
+      function updateThemeIcons() {
+        const theme = getTheme();
+        const sunIcon = document.querySelector('.theme-toggle .sun-icon');
+        const moonIcon = document.querySelector('.theme-toggle .moon-icon');
+
+        if (theme === 'dark') {
+          sunIcon?.classList.add('hidden');
+          moonIcon?.classList.remove('hidden');
+        } else {
+          sunIcon?.classList.remove('hidden');
+          moonIcon?.classList.add('hidden');
+        }
+      }
+
+      // Set theme immediately to prevent flash
+      setTheme(getTheme());
+
+      // Mount ThemeToggle in the footer container
+      document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('theme-toggle-container');
+        if (container) {
+          container.innerHTML = `
+            <button
+              class="theme-toggle inline-flex items-center justify-center h-9 w-9 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              onclick="toggleTheme()"
+              type="button"
+              aria-label="Toggle theme"
+            >
+              <svg class="sun-icon h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="m12 2 0 2"/>
+                <path d="m12 20 0 2"/>
+                <path d="m4.93 4.93 1.41 1.41"/>
+                <path d="m17.66 17.66 1.41 1.41"/>
+                <path d="m2 12 2 0"/>
+                <path d="m20 12 2 0"/>
+                <path d="m6.34 17.66-1.41 1.41"/>
+                <path d="m19.07 4.93-1.41 1.41"/>
+              </svg>
+              <svg class="moon-icon h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+              </svg>
+            </button>
+          `;
+          updateThemeIcons();
+        }
+      });
+    </script>
+  </body>
+</html>

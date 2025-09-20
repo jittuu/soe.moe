@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { formatDate } from "@/lib/utils";
+
+const posts = await getCollection("blog");
+const publishedPosts = posts
+  .filter((post) => post.data.published)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<Layout title="Soe Moe's Blog" description="Code, stories, and thoughts.">
+  <div class="container max-w-4xl py-6 lg:py-10">
+    <div class="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
+      <div class="flex-1 space-y-4">
+        <h1 class="inline-block font-heading text-4xl lg:text-5xl">
+          Soe Moe's Blog
+        </h1>
+        <p class="text-xl text-muted-foreground">
+          Code, stories, and thoughts.
+        </p>
+      </div>
+    </div>
+    <hr class="my-8" />
+    {publishedPosts?.length ? (
+      <div class="grid gap-10">
+        {publishedPosts.map((post) => (
+          <article class="leading-8 group relative flex flex-col space-y-2">
+            <h2 class="text-2xl font-extrabold">{post.data.title}</h2>
+            {post.data.description && <p>{post.data.description}</p>}
+            {post.data.date && (
+              <div class="flex flex-row gap-1 items-center">
+                <svg class="text-muted-foreground" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 2v4"/>
+                  <path d="M16 2v4"/>
+                  <rect width="18" height="18" x="3" y="4" rx="2"/>
+                  <path d="M3 10h18"/>
+                </svg>
+                <span class="text-sm text-muted-foreground">
+                  {formatDate(post.data.date)}
+                </span>
+              </div>
+            )}
+            <a href={`/blog/${post.slug}`} class="absolute inset-0">
+              <span class="sr-only">View Article</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p>No posts published.</p>
+    )}
+  </div>
+</Layout>
