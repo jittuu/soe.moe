@@ -1,12 +1,16 @@
 import { MDXComponents } from "mdx/types";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import Image from "next/image";
+import NextImage, { ImageProps } from "next/image";
 import * as React from "react";
 
 import { Callout } from "@/components/callout";
 import { MdxCard } from "@/components/mdx-card";
 import { Tip } from "@/components/tip";
 import { cn } from "@/lib/utils";
+
+const Image = (props: ImageProps) => {
+  return <NextImage {...props} />;
+};
 
 const components: MDXComponents = {
   h1: ({ className, ...props }) => (
