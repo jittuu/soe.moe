@@ -1,61 +1,39 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrettyCode from 'rehype-pretty-code';
-import remarkGfm from 'remark-gfm';
+import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 export default defineConfig({
-  site: 'https://soe.moe',
-  vite: {
-    resolve: {
-      alias: {
-        '@': '/src'
-      }
-    }
-  },
-  integrations: [
-    mdx({
-      remarkPlugins: [remarkGfm],
+  site: "https://soe.moe",
+  compressHTML: true,
+  markdown: {
+    processor: unified({
       rehypePlugins: [
         rehypeSlug,
-        [
-          rehypePrettyCode,
-          {
-            theme: 'github-dark',
-            onVisitLine(node) {
-              if (node.children.length === 0) {
-                node.children = [{ type: 'text', value: ' ' }];
-              }
-            },
-            onVisitHighlightedLine(node) {
-              node.properties.className.push('line--highlighted');
-            },
-            onVisitHighlightedWord(node) {
-              node.properties.className = ['word--highlighted'];
-            },
-          },
-        ],
         [
           rehypeAutolinkHeadings,
           {
             properties: {
-              className: ['subheading-anchor'],
-              ariaLabel: 'Link to section',
+              className: ["subheading-anchor"],
+              ariaLabel: "Link to section",
             },
           },
         ],
       ],
     }),
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    sitemap()
-  ],
-  output: 'static',
-  trailingSlash: 'never',
+  },
+  vite: {
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@": "/src",
+      },
+    },
+  },
+  integrations: [mdx(), sitemap()],
+  output: "static",
+  trailingSlash: "never",
 });

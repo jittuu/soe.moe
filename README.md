@@ -1,43 +1,37 @@
-# Astro Starter Kit: Minimal
+# soe.moe
+
+Source for [soe.moe](https://soe.moe), a statically generated personal site and blog.
+
+## Stack
+
+- Astro 7 with MDX 8 content collections and the unified Markdown processor
+- Tailwind CSS 4 through its Vite plugin
+- Bun for dependency management and scripts
+- TypeScript 6 and `astro check` for type diagnostics
+
+## Requirements
+
+- Bun 1.3.14
+- Node.js 24.22.1 or newer (pinned in `.node-version`)
+
+## Development
 
 ```sh
-bun create astro@latest -- --template minimal
+bun ci
+bun dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The development server runs at `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Verification
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+bun run ci
+bun audit --audit-level=high
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+`bun run ci` checks formatting and types, then builds the six static routes into `dist/`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Content
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Blog posts live in `src/content/blog` as MDX files. Their frontmatter is validated by `src/content.config.ts`.

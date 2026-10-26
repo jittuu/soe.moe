@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/lib/utils";
+
+interface Props extends Omit<HTMLAttributes<"div">, "class"> {
+  class?: string;
+  icon?: string;
+  type?: "default" | "warning" | "danger";
+}
+
+const { class: className, icon, type = "default", ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  class={cn(
+    "my-6 flex items-start rounded-md border border-l-4 p-4",
+    type === "danger" && "border-red-900 bg-red-50",
+    type === "warning" && "border-yellow-900 bg-yellow-50",
+    className,
+  )}
+>
+  {icon && <span class="mr-4 text-2xl">{icon}</span>}
+  <div><slot /></div>
+</div>
